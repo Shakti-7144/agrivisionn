@@ -1,6 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { MapPin, Sparkles } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const listings = [
   { crop: "Alphonso Mango", farmer: "Ravi Patel", location: "Ratnagiri, MH", qty: "500 kg", price: "₹180/kg", quality: "EXCELLENT", img: "🥭" },
