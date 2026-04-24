@@ -1,10 +1,10 @@
-import { Camera, Brain, IndianRupee, HandshakeIcon } from "lucide-react";
+import { Camera, Brain, IndianRupee, Handshake } from "lucide-react";
 
 const steps = [
   { icon: Camera, title: "Upload your crop", desc: "Take a clear photo of your harvest from the farmer dashboard." },
   { icon: Brain, title: "AI analyzes instantly", desc: "Quality grade, disease detection, and freshness score in seconds." },
   { icon: IndianRupee, title: "Get a fair price", desc: "We compare mandi rates and suggest a transparent price range." },
-  { icon: HandshakeIcon, title: "Sell to verified buyers", desc: "List in the marketplace and connect directly — no middlemen." },
+  { icon: Handshake, title: "Sell to verified buyers", desc: "List in the marketplace and connect directly — no middlemen." },
 ];
 
 const HowItWorks = () => (
