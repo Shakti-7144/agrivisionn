@@ -26,7 +26,7 @@ const Marketplace = () => {
             Fresh, AI-verified listings from real farms.
           </h2>
         </div>
-        <Button variant="outline">Browse all listings</Button>
+        <Button variant="outline" onClick={() => navigate("/marketplace")}>Browse all listings</Button>
       </div>
 
       <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -56,13 +56,14 @@ const Marketplace = () => {
                   <p className="font-display text-2xl font-bold text-primary">{l.price}</p>
                 </div>
               </div>
-              <Button className="w-full mt-5" variant="default">Contact Farmer</Button>
+              <Button className="w-full mt-5" variant="default" onClick={() => navigate("/marketplace")}>Contact Farmer</Button>
             </div>
           </article>
         ))}
       </div>
     </div>
   </section>
-);
+  );
+};
 
 export default Marketplace;
