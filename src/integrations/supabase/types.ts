@@ -14,16 +14,250 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      crop_analyses: {
+        Row: {
+          confidence: number | null
+          created_at: string
+          crop_detected: boolean
+          crop_name: string | null
+          damage_level: string | null
+          disease_detected: boolean
+          disease_name: string | null
+          freshness: string | null
+          harvest_date: string | null
+          id: string
+          image_url: string
+          location: string | null
+          quality: Database["public"]["Enums"]["crop_quality"] | null
+          quantity_kg: number | null
+          raw_response: Json | null
+          recommendation: string | null
+          storage_tips: string | null
+          suggested_price: string | null
+          user_id: string
+        }
+        Insert: {
+          confidence?: number | null
+          created_at?: string
+          crop_detected?: boolean
+          crop_name?: string | null
+          damage_level?: string | null
+          disease_detected?: boolean
+          disease_name?: string | null
+          freshness?: string | null
+          harvest_date?: string | null
+          id?: string
+          image_url: string
+          location?: string | null
+          quality?: Database["public"]["Enums"]["crop_quality"] | null
+          quantity_kg?: number | null
+          raw_response?: Json | null
+          recommendation?: string | null
+          storage_tips?: string | null
+          suggested_price?: string | null
+          user_id: string
+        }
+        Update: {
+          confidence?: number | null
+          created_at?: string
+          crop_detected?: boolean
+          crop_name?: string | null
+          damage_level?: string | null
+          disease_detected?: boolean
+          disease_name?: string | null
+          freshness?: string | null
+          harvest_date?: string | null
+          id?: string
+          image_url?: string
+          location?: string | null
+          quality?: Database["public"]["Enums"]["crop_quality"] | null
+          quantity_kg?: number | null
+          raw_response?: Json | null
+          recommendation?: string | null
+          storage_tips?: string | null
+          suggested_price?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      listings: {
+        Row: {
+          analysis_id: string | null
+          created_at: string
+          crop_name: string
+          description: string | null
+          disease_detected: boolean
+          farmer_id: string
+          id: string
+          image_url: string
+          location: string
+          price_per_kg: number
+          quality: Database["public"]["Enums"]["crop_quality"]
+          quantity_kg: number
+          status: Database["public"]["Enums"]["listing_status"]
+          updated_at: string
+        }
+        Insert: {
+          analysis_id?: string | null
+          created_at?: string
+          crop_name: string
+          description?: string | null
+          disease_detected?: boolean
+          farmer_id: string
+          id?: string
+          image_url: string
+          location: string
+          price_per_kg: number
+          quality: Database["public"]["Enums"]["crop_quality"]
+          quantity_kg: number
+          status?: Database["public"]["Enums"]["listing_status"]
+          updated_at?: string
+        }
+        Update: {
+          analysis_id?: string | null
+          created_at?: string
+          crop_name?: string
+          description?: string | null
+          disease_detected?: boolean
+          farmer_id?: string
+          id?: string
+          image_url?: string
+          location?: string
+          price_per_kg?: number
+          quality?: Database["public"]["Enums"]["crop_quality"]
+          quantity_kg?: number
+          status?: Database["public"]["Enums"]["listing_status"]
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "listings_analysis_id_fkey"
+            columns: ["analysis_id"]
+            isOneToOne: false
+            referencedRelation: "crop_analyses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      orders: {
+        Row: {
+          buyer_id: string
+          created_at: string
+          farmer_id: string
+          id: string
+          listing_id: string
+          notes: string | null
+          quantity_kg: number
+          status: Database["public"]["Enums"]["order_status"]
+          total_price: number
+          updated_at: string
+        }
+        Insert: {
+          buyer_id: string
+          created_at?: string
+          farmer_id: string
+          id?: string
+          listing_id: string
+          notes?: string | null
+          quantity_kg: number
+          status?: Database["public"]["Enums"]["order_status"]
+          total_price: number
+          updated_at?: string
+        }
+        Update: {
+          buyer_id?: string
+          created_at?: string
+          farmer_id?: string
+          id?: string
+          listing_id?: string
+          notes?: string | null
+          quantity_kg?: number
+          status?: Database["public"]["Enums"]["order_status"]
+          total_price?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "orders_listing_id_fkey"
+            columns: ["listing_id"]
+            isOneToOne: false
+            referencedRelation: "listings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          full_name: string | null
+          id: string
+          location: string | null
+          phone: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          full_name?: string | null
+          id: string
+          location?: string | null
+          phone?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          full_name?: string | null
+          id?: string
+          location?: string | null
+          phone?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "farmer" | "buyer" | "admin"
+      crop_quality: "EXCELLENT" | "GOOD" | "POOR"
+      listing_status: "active" | "sold" | "inactive"
+      order_status:
+        | "pending"
+        | "accepted"
+        | "packed"
+        | "shipped"
+        | "delivered"
+        | "cancelled"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +384,18 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["farmer", "buyer", "admin"],
+      crop_quality: ["EXCELLENT", "GOOD", "POOR"],
+      listing_status: ["active", "sold", "inactive"],
+      order_status: [
+        "pending",
+        "accepted",
+        "packed",
+        "shipped",
+        "delivered",
+        "cancelled",
+      ],
+    },
   },
 } as const
