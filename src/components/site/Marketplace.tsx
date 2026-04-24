@@ -1,6 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { MapPin, Sparkles } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const listings = [
   { crop: "Alphonso Mango", farmer: "Ravi Patel", location: "Ratnagiri, MH", qty: "500 kg", price: "₹180/kg", quality: "EXCELLENT", img: "🥭" },
@@ -13,7 +14,9 @@ const qualityClass = (q: string) =>
   : q === "GOOD" ? "bg-quality-good text-primary-foreground"
   : "bg-quality-poor text-primary-foreground";
 
-const Marketplace = () => (
+const Marketplace = () => {
+  const navigate = useNavigate();
+  return (
   <section id="marketplace" className="py-24 bg-background">
     <div className="container">
       <div className="flex items-end justify-between flex-wrap gap-6">
@@ -23,7 +26,7 @@ const Marketplace = () => (
             Fresh, AI-verified listings from real farms.
           </h2>
         </div>
-        <Button variant="outline">Browse all listings</Button>
+        <Button variant="outline" onClick={() => navigate("/marketplace")}>Browse all listings</Button>
       </div>
 
       <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -53,13 +56,14 @@ const Marketplace = () => (
                   <p className="font-display text-2xl font-bold text-primary">{l.price}</p>
                 </div>
               </div>
-              <Button className="w-full mt-5" variant="default">Contact Farmer</Button>
+              <Button className="w-full mt-5" variant="default" onClick={() => navigate("/marketplace")}>Contact Farmer</Button>
             </div>
           </article>
         ))}
       </div>
     </div>
   </section>
-);
+  );
+};
 
 export default Marketplace;

@@ -1,8 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { ScanLine, Store, Sparkles } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import heroImg from "@/assets/hero-farm.jpg";
 
 const Hero = () => {
+  const navigate = useNavigate();
   return (
     <section className="relative overflow-hidden">
       <div className="absolute inset-0">
@@ -32,11 +34,11 @@ const Hero = () => {
           </p>
 
           <div className="mt-10 flex flex-wrap gap-3">
-            <Button variant="hero" size="xl">
+            <Button variant="hero" size="xl" onClick={() => navigate("/dashboard")}>
               <ScanLine className="h-5 w-5" />
               Analyze Crop
             </Button>
-            <Button variant="glass" size="xl">
+            <Button variant="glass" size="xl" onClick={() => navigate("/marketplace")}>
               <Store className="h-5 w-5" />
               Explore Marketplace
             </Button>
