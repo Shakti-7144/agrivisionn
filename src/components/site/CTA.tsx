@@ -1,7 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { ScanLine, Store } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
-const CTA = () => (
+const CTA = () => {
+  const navigate = useNavigate();
+  return (
   <section className="py-24 bg-background">
     <div className="container">
       <div className="relative overflow-hidden rounded-3xl gradient-primary p-10 md:p-16 text-center shadow-glow">
