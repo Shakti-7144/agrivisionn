@@ -14,7 +14,9 @@ const qualityClass = (q: string) =>
   : q === "GOOD" ? "bg-quality-good text-primary-foreground"
   : "bg-quality-poor text-primary-foreground";
 
-const Marketplace = () => (
+const Marketplace = () => {
+  const navigate = useNavigate();
+  return (
   <section id="marketplace" className="py-24 bg-background">
     <div className="container">
       <div className="flex items-end justify-between flex-wrap gap-6">
